@@ -29,6 +29,6 @@
 
 #define BOARD_INFO_NAME "GT2560 Rev.A+"
 
-#define SERVO0_PIN                            11
+#define SERVO0_PIN                            32
 
 #include "pins_GT2560_REV_A.h"
