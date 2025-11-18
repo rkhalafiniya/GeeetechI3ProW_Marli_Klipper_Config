@@ -28,7 +28,28 @@ serial: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
 
 For octoprint add this to the settings/serial connects: `home/[user]/printer_data/comms/klippy.serial`
 
-**Klipper firmware:** `klipper/klipper.elf.hex`
+**Klipper firmware:** 
+
+The hex file is not commited, but to use the flash command below copy the hex file to this location: `klipper/klipper.elf.hex`
+
+To build the klipper hex file, use the following commands in the klipper folder, most likely in `~/klipper`
+
+`make menuconfig` and select the info about the board, the config will be similar to this and is located in `klipper/.config`: 
+```
+CONFIG_MCU="atmega2560"
+CONFIG_AVRDUDE_PROTOCOL="wiring"
+CONFIG_CLOCK_FREQ=16000000
+CONFIG_AVR_CLKPR=-1
+CONFIG_AVR_STACK_SIZE=256
+CONFIG_AVR_WATCHDOG=y
+CONFIG_SERIAL=y
+CONFIG_SERIAL_BAUD_U2X=y
+CONFIG_SERIAL_PORT=0
+CONFIG_SERIAL_BAUD=250000
+
+```
+After that run the kiauh `~/kiauh/kiauh.sh` and select 4 for advanced menu, then build. this will generate a klipper.elf.hex in `~/klipper/out` folder that you can use to flash into the board.
+
 
 **Klipper Printer Config**
 `./klipper/printer.cfg`
